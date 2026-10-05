@@ -3,47 +3,90 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; script-src 'sha256-FQ17BShuWOltpC6IjFG5htFvDOggN/1qWd62zhm7xDA='; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'">
 <title>Estoque LCE-04</title>
 <meta name="description" content="Atalho para o sistema de estoque do LM Hub LCE-04.">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; script-src 'sha256-3eY0bUXweXBNQnPhKJIxY3kRYkNY6yUK5kuHDphbrpE='; manifest-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="theme-color" content="#ee4d2d">
 <meta name="application-name" content="Estoque LCE-04">
 <meta name="apple-mobile-web-app-title" content="Estoque LCE-04">
-<link rel="manifest" href="manifest.webmanifest">
+<meta name="format-detection" content="telephone=no">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icone-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180.png">
+<!-- O manifest é inserido pelo script só fora do iOS (no iPhone o app abre no Safari, onde o login Google é estável). -->
 <style>
   html,body{height:100%;margin:0}
+  [hidden]{display:none!important}
   body{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
-    background:#ee4d2d;color:#fff;font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;text-align:center;padding:24px;box-sizing:border-box}
+    background:#ee4d2d;color:#fff;font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;text-align:center;
+    padding:max(24px,env(safe-area-inset-top)) 24px max(24px,env(safe-area-inset-bottom));box-sizing:border-box}
   img{width:88px;height:88px;border-radius:20px;box-shadow:0 0 0 2px rgba(255,255,255,.35)}
   h1{font-size:21px;margin:0}
   p{margin:0;max-width:340px}
-  .abrir{display:inline-block;margin-top:4px;padding:13px 26px;border-radius:999px;background:#fff;color:#c73a1e;font-weight:700;text-decoration:none}
-  .passos{display:none;max-width:340px;text-align:left;background:rgba(0,0,0,.14);border-radius:14px;padding:14px 16px}
-  .passos b{font-weight:700}
-  .passos ul{margin:6px 0 0;padding-left:20px}
-  .instalar .passos{display:block}
-  .instalar .msg{display:none}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;margin-top:4px;padding:0 26px;border:0;border-radius:999px;
+    background:#fff;color:#c73a1e;font:inherit;font-weight:700;text-decoration:none;cursor:pointer;touch-action:manipulation}
+  .btn.sec{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.7)}
+  .caixa{display:none;max-width:340px;text-align:left;background:rgba(0,0,0,.14);border-radius:14px;padding:14px 16px}
+  .caixa ul{margin:6px 0 0;padding-left:20px}
+  .caixa li+li{margin-top:4px}
+  #instalar-app{display:none}
+  .instalar .passos,.offline .sem-rede{display:block}
+  .instalar .msg,.offline .msg,.offline #abrir{display:none}
+  .instalar.pode-instalar #instalar-app{display:inline-flex}
 </style>
 </head>
 <body>
   <img src="icone-192.png" alt="">
   <h1>Estoque LCE-04</h1>
   <p class="msg">Abrindo o sistema…</p>
-  <div class="passos">
+  <div class="caixa passos">
     <b>Instale o ícone nesta tela</b>
     <ul>
-      <li><b>Android (Chrome):</b> menu ⋮ › Adicionar à tela inicial › Adicionar.</li>
+      <li><b>Android (Chrome):</b> toque em “Instalar aplicativo” abaixo ou no menu ⋮ › Instalar app / Adicionar à tela inicial.</li>
       <li><b>iPhone (Safari):</b> Compartilhar › Adicionar à Tela de Início › Adicionar.</li>
     </ul>
-    <p style="margin-top:8px">Depois, abra sempre pelo ícone.</p>
+    <p style="margin-top:8px">Depois, abra sempre pelo ícone. O login continua sendo a sua conta Google da empresa.</p>
   </div>
-  <a class="abrir" id="abrir" href="https://script.google.com/a/macros/shopee.com/s/AKfycbweVMGr-x0g6dYDh3_aZoIQ7A6rABBtqyZGIoJXuIWviGaWUofrSQf47UEIoK4m18AtWw/exec">Abrir o sistema</a>
-<script>(function(){var q=location.search,k='lce04-atalho',v=null;try{v=localStorage.getItem(k);localStorage.setItem(k,'1');}catch(e){}if(/[?&]abrir\b/.test(q)||(v&&!/[?&]instalar\b/.test(q))){location.replace(document.getElementById('abrir').href);}else{document.body.className='instalar';}})();</script>
+  <div class="caixa sem-rede">
+    <b>Sem conexão com a internet</b>
+    <p style="margin-top:6px">O Estoque LCE-04 só funciona on-line: entradas, saídas, ajustes e recebimentos precisam do servidor para manter o saldo correto. Nada é registrado sem internet.</p>
+  </div>
+  <button type="button" class="btn" id="instalar-app">Instalar aplicativo</button>
+  <a class="btn" id="abrir" href="https://script.google.com/a/macros/shopee.com/s/AKfycbweVMGr-x0g6dYDh3_aZoIQ7A6rABBtqyZGIoJXuIWviGaWUofrSQf47UEIoK4m18AtWw/exec">Abrir o sistema</a>
+  <button type="button" class="btn sec" id="tentar" hidden>Tentar novamente</button>
+<script>
+(function () {
+  var b = document.body, abrir = document.getElementById('abrir');
+  var ua = navigator.userAgent || '';
+  var ios = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (!ios) {
+    var l = document.createElement('link'); l.rel = 'manifest'; l.href = 'manifest.webmanifest'; document.head.appendChild(l);
+  }
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function () {});
+  var promptInstalar = null;
+  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); promptInstalar = e; b.classList.add('pode-instalar'); });
+  document.getElementById('instalar-app').addEventListener('click', function () {
+    if (!promptInstalar) return;
+    promptInstalar.prompt(); promptInstalar = null; b.classList.remove('pode-instalar');
+  });
+  var tentar = document.getElementById('tentar');
+  tentar.addEventListener('click', function () { location.reload(); });
+  window.addEventListener('online', function () { if (b.classList.contains('offline')) location.reload(); });
+
+  var q = location.search, visto = null;
+  try { visto = localStorage.getItem('lce04-atalho'); localStorage.setItem('lce04-atalho', '1'); } catch (e) { /* sem armazenamento: mostra a tela */ }
+  var app = window.matchMedia && matchMedia('(display-mode: standalone)').matches;
+  var instalar = /[?&]instalar\b/.test(q);
+  var direto = /[?&]abrir\b/.test(q) || app || (visto && !instalar);
+  if (navigator.onLine === false) { b.className = 'offline'; tentar.hidden = false; return; }
+  if (direto) { location.replace(abrir.href); return; }
+  b.className = 'instalar';
+  // O atalho do iPhone guarda a URL atual: sem o "?instalar", ao tocar no ícone ele abre o sistema direto.
+  try { history.replaceState(null, '', location.pathname); } catch (e) { /* ignora */ }
+})();
+</script>
 </body>
 </html>

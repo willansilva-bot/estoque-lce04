@@ -1,0 +1,20 @@
+# Este repositório é PÚBLICO e serve só a página de atalho (GitHub Pages).
+# O sistema (Apps Script), a planilha e qualquer configuração interna NUNCA vêm para cá.
+*.gs
+Config*
+appsscript.json
+.clasp.json
+.clasprc.json
+.env
+.env.*
+*.key
+*.pem
+*.p12
+credentials*.json
+service-account*.json
+token*.json
+*.xlsx
+*.csv
+node_modules/
+.DS_Store
+Thumbs.db
