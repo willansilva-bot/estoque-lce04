@@ -2,7 +2,7 @@
   "name": "Estoque LCE-04",
   "short_name": "Estoque LCE-04",
   "description": "Controle de estoque do LM Hub LCE-04",
-  "start_url": "./",
+  "start_url": "./?abrir",
   "scope": "./",
   "display": "browser",
   "background_color": "#ee4d2d",
